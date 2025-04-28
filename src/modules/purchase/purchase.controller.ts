@@ -44,7 +44,7 @@ export class PurchaseController {
                     totalPrice,
             })
             
-            res.send({ message:"product purchase successfully",
+            res.send({ message: "product purchase successfully",
                 purchaseDetails: {
                     productId: productId,
                     productName: product.name,
@@ -55,6 +55,31 @@ export class PurchaseController {
             })
         } catch (error) {
             res.status(500).json({ message: "error in purchasing product" })
+        }
+    }
+
+    //purchaseHistory
+    public purchaseHistory = async(req: Request,res: Response): Promise<any> => {
+        try {
+            const id = parseInt(req.params.id);
+            const purchaseHistory = await this.purchaseService.purchaseHistory(id);
+    
+            if (!purchaseHistory || purchaseHistory.length === 0) {
+                return res.status(404).json({ message: "No purchase history found" });
+            }
+
+            const formattedHistory = purchaseHistory.map(purchase => ({
+                productName: purchase.product.name,
+                quantity: purchase.quantity,
+                totalPrice: purchase.totalPrice,               
+            }));
+
+            res.status(200).json({
+                message: "purchase history",
+                purchaseHistory: formattedHistory
+            })
+        } catch (error) {
+            res.status(500).json({ message: "error to find purchase history" })
         }
     }
 }

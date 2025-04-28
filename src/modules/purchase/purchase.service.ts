@@ -18,4 +18,16 @@ export class PurchaseService {
         })
         return findproduct;
     }
+
+    async purchaseHistory(id: number){
+        const purchaseHistory = await prisma.purchase.findMany({
+            where: {
+                id
+            },
+            include: {
+                product: true
+            }
+        })
+        return purchaseHistory;
+    }
 }
