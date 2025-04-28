@@ -1,6 +1,6 @@
 export class Constants {
     public static readonly PAGER = {
         page: 1,
-        limit: 10,
+        limit: 3,
     }
 }

@@ -1,12 +1,13 @@
-import { Request, Response, NextFunction } from "express";
-import { PrismaClient } from "../../prisma/generated/prisma/index.js";
+import { Request, Response } from "express";
+import { PrismaClient } from "../../prisma/generated/prisma/index.js";  
+import { Constants } from "../configs/index";
 const prisma = new PrismaClient();
 
-export async function destructPagerMiddleware(req: Request, res: Response, next: NextFunction) {
+export async function destructPagerMiddleware(req: Request, res: Response):Promise<any> {
     try {
-        const page = parseInt(req.query.page as string) || 1;
-        const limit = parseInt(req.query.limit as string) || 3;
-
+        let page = parseInt(req.query.page as string) || (Constants.PAGER.page);
+        const limit = parseInt(req.query.limit as string) || (Constants.PAGER.limit);
+        
         const skip = (page - 1) * limit;
         
         const products = await prisma.product.findMany({
@@ -14,12 +15,18 @@ export async function destructPagerMiddleware(req: Request, res: Response, next:
             take: limit,
         })
 
-        const total = await prisma.product.count();
+        const totalProducts = await prisma.product.count();
+
+        const totalPages = Math.ceil(totalProducts/limit);
+
+        if(page>totalPages){
+            return res.send({ message: "page not found" })
+        }
 
         res.json({
-            totalProducts: total,
+            totalProducts,
             page,
-            pages: Math.ceil(total/limit),
+            pages: totalPages,
             products,
         })
 
