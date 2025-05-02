@@ -17,8 +17,8 @@ export class UserController {
         try {
             const { name, email, password, role } = req.body;
 
-            const existingUser = await this.userService.findUserByEmail(email);
-            if(existingUser){
+            const checkUserIsRegisterd = await this.userService.findUserByEmail(email);
+            if(checkUserIsRegisterd){
                 return res.send("email already registered")
             }
 
@@ -35,7 +35,9 @@ export class UserController {
             }); 
 
             customLogger.info("new user created");
+
             res.status(201).json({ message: `${role} account created successfully`, data });
+
         } catch (error) {
             customLogger.error(`error in creating user: ${(error as any).message}`)
             res.status(500).json({ message: "something wrong" });
