@@ -1,3 +1,9 @@
-node_modules
-# Keep environment variables out of version control
+# Node modules
+node_modules/
+
+# Environment variables
 .env
+
+# Log files
+purchase-error.log
+user.log

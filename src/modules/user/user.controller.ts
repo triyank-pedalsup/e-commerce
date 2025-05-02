@@ -16,6 +16,7 @@ export class UserController {
     public register = async (req: Request, res: Response): Promise<any> => {
         try {
             const { name, email, password, role } = req.body;
+
             const hashPassword = await bcrypt.hash(password, 10);
             const data = await this.userService.register({
                 name,
