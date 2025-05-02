@@ -17,8 +17,8 @@ export class UserController {
         try {
             const { name, email, password, role } = req.body;
 
-            const checkUserIsRegisterd = await this.userService.findUserByEmail(email);
-            if(checkUserIsRegisterd){
+            const existingUser = await this.userService.findUserByEmail(email);
+            if(existingUser){
                 return res.send("email already registered")
             }
 
@@ -35,7 +35,7 @@ export class UserController {
             }); 
 
             customLogger.info("new user created");
-
+            
             res.status(201).json({ message: `${role} account created successfully`, data });
 
         } catch (error) {
