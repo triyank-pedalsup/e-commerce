@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { InjectCls } from "../../decorator/inject-cls";
 import { UserService } from "./user.service";
 import { JwtMiddleWare } from "../../middleware/jwt.middleware";
+import { customLogger } from "../../helpers/logger.helpers"
 
 export class UserController {
 
@@ -21,10 +22,13 @@ export class UserController {
                 email,
                 password: hashPassword,
                 role,
-            });
+            }); 
+
+            customLogger.info("new user created");
             res.status(201).json({ message: `${role} account created successfully`, data });
         } catch (error) {
-            res.status(500).json({ message: "email already registered" });
+            customLogger.error(`error in creating user: ${(error as any).message}`)
+            res.status(500).json({ message: "something wrong" });
         }
        
     };

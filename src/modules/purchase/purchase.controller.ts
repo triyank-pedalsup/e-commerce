@@ -1,6 +1,7 @@
 import { InjectCls } from "../../decorator/inject-cls";
 import { Request, Response } from "express";
 import { PurchaseService } from "./purchase.service";
+import { customLogger } from "../../helpers/logger.helpers";
 
 export class PurchaseController {
 
@@ -43,6 +44,8 @@ export class PurchaseController {
                     quantity,
                     totalPrice,
             })
+
+            customLogger.info("successfully purchase product")
             
             res.send({ message: "product purchase successfully",
                 purchaseDetails: {
@@ -54,6 +57,7 @@ export class PurchaseController {
                 }
             })
         } catch (error) {
+            customLogger.error(`Error in purchasing product: ${(error as any).message}`);
             res.status(500).json({ message: "error in purchasing product" })
         }
     }
