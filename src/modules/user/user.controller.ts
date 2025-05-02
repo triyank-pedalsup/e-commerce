@@ -17,6 +17,15 @@ export class UserController {
         try {
             const { name, email, password, role } = req.body;
 
+            const existingUser = await this.userService.findUserByEmail(email);
+            if(existingUser){
+                return res.send("email already registered")
+            }
+
+            if(role!=='admin' && role!=='user'){
+                return res.send({message: "Invalid role. Role must be 'admin' or 'user'"})
+            }
+
             const hashPassword = await bcrypt.hash(password, 10);
             const data = await this.userService.register({
                 name,

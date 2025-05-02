@@ -7,3 +7,4 @@ node_modules/
 # Log files
 purchase-error.log
 user.log
+*.log
