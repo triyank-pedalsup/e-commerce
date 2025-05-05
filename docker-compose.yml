@@ -1,0 +1,14 @@
+version: '3.8'
+
+name: 'e-commerce-app'
+
+services:
+  mongo:
+    image: postgresql:6
+    container_name: postgresqldb
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:data/db
+    networks:
+      - ecommerce-networks
