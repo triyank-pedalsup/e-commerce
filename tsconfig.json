@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "outDir": "dist",
+    "target": "ES6",
     "module": "commonjs",
     "lib": ["es2017", "esnext.asynciterable"],
     "moduleResolution": "node",
@@ -22,3 +23,4 @@
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
+  
