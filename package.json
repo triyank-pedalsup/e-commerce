@@ -8,7 +8,7 @@
     "start": "node dist/server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "triyaank",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
