@@ -1,14 +1,43 @@
-version: '3.8'
+version: '3.9'
 
 name: 'e-commerce-app'
 
 services:
-  mongo:
-    image: postgresql:6
-    container_name: postgresqldb
+  # mongo:
+  #   image: postgresql:6
+  #   container_name: postgresqldb
+  #   ports:
+  #     - '5432:5432'
+  #   volumes:
+  #     - postgres_data:data/db
+  #   networks:
+  #     - ecommerce-networks
+
+  backend: 
+    app:
+      container_name: backend-app
+      build:
+        context: .
+        dockerfile: Dockerfile
+        ports:
+          - '3001:3001'
+        env-files:
+          - .env
+        volumes: 
+          - .:/app
+          - /app/node_modules
+        depends_on:
+          - postgres
+        command:
+          - npm start
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
     ports:
       - '5432:5432'
-    volumes:
-      - postgres_data:data/db
-    networks:
-      - ecommerce-networks
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: PEDALSUP
+      POSTGRES_DB: task
+      volumes: pgdata:/var/lib/postgresql/data
