@@ -153,6 +153,14 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "windows"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -179,8 +187,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int      @id @default(autoincrement())\n  name     String\n  email    String   @unique\n  password String\n  role     UserRole\n\n  purchases Purchase[] @relation(\"Purchase\")\n}\n\nmodel Product {\n  id          Int    @id @default(autoincrement())\n  name        String\n  price       Float\n  description String\n\n  purchases Purchase[] @relation(\"Product\")\n}\n\nmodel Purchase {\n  id         Int     @id @default(autoincrement())\n  userId     Int\n  user       User    @relation(\"Purchase\", fields: [userId], references: [id])\n  productId  Int\n  product    Product @relation(\"Product\", fields: [productId], references: [id])\n  quantity   Int\n  totalPrice Float\n}\n\nenum UserRole {\n  user\n  admin\n}\n",
-  "inlineSchemaHash": "93242336629fed055c8249d7b2a0d79d49aab9ea8d226cb623fbd7c03b4a86c5",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"generated/prisma\"\n  binaryTargets = [\"native\", \"windows\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int      @id @default(autoincrement())\n  name     String\n  email    String   @unique\n  password String\n  role     UserRole\n\n  purchases Purchase[] @relation(\"Purchase\")\n}\n\nmodel Product {\n  id          Int    @id @default(autoincrement())\n  name        String\n  price       Float\n  description String\n\n  purchases Purchase[] @relation(\"Product\")\n}\n\nmodel Purchase {\n  id         Int     @id @default(autoincrement())\n  userId     Int\n  user       User    @relation(\"Purchase\", fields: [userId], references: [id])\n  productId  Int\n  product    Product @relation(\"Product\", fields: [productId], references: [id])\n  quantity   Int\n  totalPrice Float\n}\n\nenum UserRole {\n  user\n  admin\n}\n",
+  "inlineSchemaHash": "0d05af03f4aedc5c589ac055b60876796a2fc7cad4ba911ce204f5777441f5b5",
   "copyEngine": true
 }
 config.dirname = '/'
