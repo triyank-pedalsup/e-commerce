@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsPositive, IsString } from "class-validator";
+import { IsInt, IsNotEmpty, IsPositive } from "class-validator";
 
 export class PurchaseProductDto {
 
@@ -18,4 +18,5 @@ export class PurchaseProductDto {
     @IsNotEmpty()
     @IsPositive({ message: 'Total price must be a positive number' })
     totalPrice: number;
+
 }
