@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "triyaank",
@@ -23,7 +23,7 @@
     "morgan": "^1.10.0",
     "prisma": "^6.6.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3",
+    "typescript": "^5.8.3", 
     "winston": "^3.17.0"
   },
   "devDependencies": {

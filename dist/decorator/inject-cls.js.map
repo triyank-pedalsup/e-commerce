@@ -1,0 +1,1 @@
+{"version":3,"file":"inject-cls.js","sourceRoot":"","sources":["../../src/decorator/inject-cls.ts"],"names":[],"mappings":";;AAAA,8BAIC;AAJD,SAAgB,SAAS,CAAI,GAAgB;IACzC,OAAO,CAAC,MAAW,EAAE,WAA4B,EAAE,EAAE;QACjD,MAAM,CAAC,WAAW,CAAC,GAAG,IAAI,GAAG,EAAE,CAAC;IACpC,CAAC,CAAA;AACL,CAAC"}
