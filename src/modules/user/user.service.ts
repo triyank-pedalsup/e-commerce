@@ -1,4 +1,5 @@
 import { PrismaClient } from '../../../prisma/generated/prisma/index.js';
+import { LoginUserDto } from './dto/login.dto.js';
 import { RegisterUserDto } from './dto/register.dto.js';
 const prisma = new PrismaClient();
 
@@ -10,7 +11,7 @@ export class UserService {
         return user;
     }
 
-    public async login(email: string){
+    public async login({email}: Pick<LoginUserDto, 'email'>){
         const user = await prisma.user.findUnique({
             where:{
                 email

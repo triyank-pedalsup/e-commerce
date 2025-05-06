@@ -1,12 +1,13 @@
 import { PrismaClient } from "../../../prisma/generated/prisma/index.js";
+import { PurchaseProductDto } from "./dto/Purchase.dto.js";
 const prisma = new PrismaClient();
 
 export class PurchaseService {
-    async purchase(data:any){
-        const purchase = await prisma.purchase.create({
-            data,
+    public async purchase(data: PurchaseProductDto){
+        const user = await prisma.purchase.create({
+            data
         })
-        return purchase;
+        return user;
     }
 
 
