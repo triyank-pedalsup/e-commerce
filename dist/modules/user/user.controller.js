@@ -42,7 +42,7 @@ class UserController {
             }
             catch (error) {
                 logger_helpers_1.customLogger.error(`error in creating user: ${error.message}`);
-                res.status(500).json({ message: "something wrong" });
+                res.status(500).json({ message: "error in registration" });
             }
         };
         this.login = async (req, res) => {
@@ -68,7 +68,7 @@ class UserController {
                 res.status(200).json({ message: "Logged in successfully", token });
             }
             catch (error) {
-                res.status(500).json({ message: "Logged in fail" });
+                res.status(500).json({ message: "Logged in fail", error: error });
             }
         };
         this.adminLogin = async (req, res) => {

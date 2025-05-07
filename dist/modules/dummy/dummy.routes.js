@@ -9,30 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserRoutes = void 0;
-const jwt_middleware_1 = require("../../middleware/jwt.middleware");
+exports.DummyRoutes = void 0;
 const inject_cls_1 = require("../../decorator/inject-cls");
-const user_controller_1 = require("./user.controller");
+const dummy_controller_1 = require("./dummy.controller");
 const express_1 = require("express");
-class UserRoutes {
+class DummyRoutes {
     constructor() {
         this.router = (0, express_1.Router)();
         this.inRoutes();
     }
     inRoutes() {
-        // Using arrow function methods in UserController
-        this.router.post("/register", this.userController.register);
-        this.router.post("/login", this.userController.login);
-        this.router.post("/admin", this.jwtMiddleware.verifyToken, this.jwtMiddleware.checkRole('admin'), this.userController.adminLogin);
-        this.router.post("/user", this.jwtMiddleware.verifyToken, this.jwtMiddleware.checkRole('user'), this.userController.userLogin);
+        this.router.get('/', this.dummyController.dummy.bind(this.dummyController));
     }
 }
-exports.UserRoutes = UserRoutes;
+exports.DummyRoutes = DummyRoutes;
 __decorate([
-    (0, inject_cls_1.InjectCls)(user_controller_1.UserController),
-    __metadata("design:type", user_controller_1.UserController)
-], UserRoutes.prototype, "userController", void 0);
-__decorate([
-    (0, inject_cls_1.InjectCls)(jwt_middleware_1.JwtMiddleWare),
-    __metadata("design:type", jwt_middleware_1.JwtMiddleWare)
-], UserRoutes.prototype, "jwtMiddleware", void 0);
+    (0, inject_cls_1.InjectCls)(dummy_controller_1.DummyController),
+    __metadata("design:type", dummy_controller_1.DummyController)
+], DummyRoutes.prototype, "dummyController", void 0);
