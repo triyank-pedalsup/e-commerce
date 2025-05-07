@@ -20,7 +20,6 @@ class UserRoutes {
         this.inRoutes();
     }
     inRoutes() {
-        // Using arrow function methods in UserController
         this.router.post("/register", this.userController.register);
         this.router.post("/login", this.userController.login);
         this.router.post("/admin", this.jwtMiddleware.verifyToken, this.jwtMiddleware.checkRole('admin'), this.userController.adminLogin);

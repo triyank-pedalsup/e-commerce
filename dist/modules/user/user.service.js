@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const index_js_1 = require("../../../prisma/generated/prisma/index.js");
-// import { LoginUserDto } from './dto/login.dto.js';
-// import { RegisterUserDto } from './dto/register.dto.js';
 const prisma = new index_js_1.PrismaClient();
 class UserService {
     async register(data) {
@@ -12,7 +10,7 @@ class UserService {
         });
         return user;
     }
-    async login(email) {
+    async login({ email }) {
         const user = await prisma.user.findUnique({
             where: {
                 email
