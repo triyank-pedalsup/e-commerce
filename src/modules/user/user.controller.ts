@@ -53,7 +53,7 @@ export class UserController {
                 return res.send("Email and password required");
             }
 
-            const user = await this.userService.login(email);
+            const user = await this.userService.login({email});
 
             if (!user) {
                 return res.send("User not found");
