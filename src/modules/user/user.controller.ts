@@ -40,7 +40,7 @@ export class UserController {
 
         } catch (error) {
             customLogger.error(`error in creating user: ${(error as any).message}`)
-            res.status(500).json({ message: "something wrong" });
+            res.status(500).json({ message: "error in registration" });
         }
        
     };
