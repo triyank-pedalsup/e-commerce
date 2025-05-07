@@ -1,10 +1,10 @@
 import { PrismaClient } from "../../../prisma/generated/prisma/index.js";
-import { CreateProdcutDto } from "./dto/createProduct.dto.js";
-import { UpdateProductDto } from "./dto/updateProduct.dto.js";
+// import { CreateProdcutDto } from "./dto/createProduct.dto.js";
+// import { UpdateProductDto } from "./dto/updateProduct.dto.js";
 const prisma = new PrismaClient();
 
 export class ProductService {
-    async create(data: CreateProdcutDto){
+    async create(data: any){
         const product = await prisma.product.create({
             data
         })
@@ -25,7 +25,7 @@ export class ProductService {
         return product;
     }
 
-    async update(id: number, data: UpdateProductDto){
+    async update(id: number, data: any){
         const product = await prisma.product.update({
             where:{
                 id
