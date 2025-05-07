@@ -15,6 +15,6 @@ export class DummyRoutes {
     }
 
     inRoutes(): void {
-        this.router.get('/dummy',this.dummyController.dummy.bind(this.dummyController))
+        this.router.get('/',this.dummyController.dummy.bind(this.dummyController))
     }
 }
