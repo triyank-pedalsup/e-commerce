@@ -12,7 +12,7 @@ const routes = new globalRoutes_1.Routes();
 app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
 app.use("/", routes.config());
-const port = process.env.PORT;
+const port = Number(process.env.PORT) || 3001;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

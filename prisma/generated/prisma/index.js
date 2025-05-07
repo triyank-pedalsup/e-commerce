@@ -183,7 +183,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://task_w0ta_user:4UlZVcu19NuvXLPGtM13Rp8YtZxZg9ro@dpg-d0d56fp5pdvs73f7ujdg-a.singapore-postgres.render.com/task_w0ta?schema=public"
+        "value": "postgres://postgres:pedalsup@localhost:5432/task"
       }
     }
   },

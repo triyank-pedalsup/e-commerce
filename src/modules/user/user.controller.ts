@@ -53,7 +53,7 @@ export class UserController {
                 return res.send("Email and password required");
             }
 
-            const user = await this.userService.login({email});
+            const user = await this.userService.login(email);
 
             if (!user) {
                 return res.send("User not found");
@@ -75,7 +75,7 @@ export class UserController {
 
             res.status(200).json({ message: "Logged in successfully", token });
         } catch (error) {
-            res.status(500).json({ message: "Logged in fail" });
+            res.status(500).json({ message: "Logged in fail", error: error });
         }
     };
 
