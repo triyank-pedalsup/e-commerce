@@ -1,6 +1,7 @@
 import express from 'express';
 import { Routes } from './globalRoutes';
 import morgan from 'morgan';
+import { RateLimitHelper } from './helpers/rate-limiter.helper';
 
 require('dotenv').config(); 
 
@@ -10,6 +11,7 @@ const routes = new Routes();
 app.use(morgan('dev'));
 app.use(express.json());
 
+app.use(new RateLimitHelper().limiter)
 app.use("/", routes.config());
 
 const port = Number(process.env.PORT) || 3001;

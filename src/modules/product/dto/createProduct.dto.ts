@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsPositive, IsString, MinLength } from "class-validator";
+import { IsNotEmpty, IsPositive, IsString, MinLength } from "class-validator";
 
 export class CreateProdcutDto {
 
