@@ -11,7 +11,7 @@
     "env": "sync-dotenv"
   },
   "keywords": [],
-  "author": "",
+  "author": "triyank bavaliya",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

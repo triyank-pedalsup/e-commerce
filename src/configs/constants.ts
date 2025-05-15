@@ -5,8 +5,8 @@ export class Constants {
     }
 
     public static readonly LIMITER = {
-        max: 1,
-        windowMs: 60*100,
+        max: 100,
+        windowMs: 60*60*100,
         message: "Too many request from this IP, please try again in an hour",
     }
 }
