@@ -142,7 +142,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\BAVALIYA TRIYANK\\OneDrive\\Desktop\\task\\prisma\\generated\\prisma",
+      "value": "/app/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -151,7 +151,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "linux-musl-openssl-3.0.x",
         "native": true
       },
       {
@@ -161,10 +161,14 @@ const config = {
       {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "linux-musl-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\BAVALIYA TRIYANK\\OneDrive\\Desktop\\task\\prisma\\schema.prisma",
+    "sourceFilePath": "/app/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -182,12 +186,12 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgres://postgres:pedalsup@localhost:5432/task"
+        "value": "postgres://postgres:pedalsup@db:5432/task"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"generated/prisma\"\n  binaryTargets = [\"native\", \"windows\", \"debian-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int      @id @default(autoincrement())\n  name     String\n  email    String   @unique\n  password String\n  role     UserRole\n\n  purchases Purchase[] @relation(\"Purchase\")\n}\n\nmodel Product {\n  id          Int    @id @default(autoincrement())\n  name        String\n  price       Float\n  description String\n\n  purchases Purchase[] @relation(\"Product\")\n}\n\nmodel Purchase {\n  id         Int     @id @default(autoincrement())\n  userId     Int\n  user       User    @relation(\"Purchase\", fields: [userId], references: [id])\n  productId  Int\n  product    Product @relation(\"Product\", fields: [productId], references: [id])\n  quantity   Int\n  totalPrice Float\n}\n\nenum UserRole {\n  user\n  admin\n}\n",
-  "inlineSchemaHash": "0d05af03f4aedc5c589ac055b60876796a2fc7cad4ba911ce204f5777441f5b5",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"generated/prisma\"\n  binaryTargets = [\"native\", \"windows\", \"debian-openssl-3.0.x\", \"linux-musl-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int      @id @default(autoincrement())\n  name     String\n  email    String   @unique\n  password String\n  role     UserRole\n\n  purchases Purchase[] @relation(\"Purchase\")\n}\n\nmodel Product {\n  id          Int    @id @default(autoincrement())\n  name        String\n  price       Float\n  description String\n\n  purchases Purchase[] @relation(\"Product\")\n}\n\nmodel Purchase {\n  id         Int     @id @default(autoincrement())\n  userId     Int\n  user       User    @relation(\"Purchase\", fields: [userId], references: [id])\n  productId  Int\n  product    Product @relation(\"Product\", fields: [productId], references: [id])\n  quantity   Int\n  totalPrice Float\n}\n\nenum UserRole {\n  user\n  admin\n}\n",
+  "inlineSchemaHash": "e8a993d82a5b452c7c3953fc731948a8fb154bd2b84f1b523a2de609388361d8",
   "copyEngine": true
 }
 config.dirname = '/'

@@ -1,16 +1,14 @@
+# node version 18-alpine
 FROM node:18-alpine
 
-# set working directory
+# generate the working directory into the docker
 WORKDIR /app
 
-# copy .json file
+# copy package.json and paste into the /app
 COPY package*.json ./
-RUN npm install
 
-# copy rest of the code
+# install the exact version of the package.json
+RUN npm ci
+
+# copy the src into this /app first one is source and second one is destination
 COPY . .
-
-EXPOSE 3001
-
-# start the backend server
-CMD ["npm", "run", "dev"]

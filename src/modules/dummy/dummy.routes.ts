@@ -1,3 +1,4 @@
+import { RateLimitHelper } from "../../helpers/index";
 import { InjectCls } from "../../decorator/inject-cls";
 import { DummyController } from "./dummy.controller";
 import { Router } from "express";
@@ -15,6 +16,6 @@ export class DummyRoutes {
     }
 
     inRoutes(): void {
-        this.router.get('/',this.dummyController.dummy.bind(this.dummyController))
+        this.router.get('/', new RateLimitHelper().limiter,this.dummyController.dummy.bind(this.dummyController))
     }
 }
