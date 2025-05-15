@@ -7,6 +7,7 @@
     "tsc": "tsc",
     "start": "node dist/server.js",
     "build": "tsc && tsc-alias",
+    "dev": "nodemon src/server.ts",
     "env": "sync-dotenv"
   },
   "keywords": [],
@@ -21,8 +22,10 @@
     "class-validator": "^0.14.1",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
+    "nodemon": "^3.1.10",
     "prisma": "^6.6.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",

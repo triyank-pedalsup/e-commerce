@@ -1,4 +1,4 @@
-import { InjectCls } from "decorator/inject-cls";
+import { InjectCls } from "../../decorator/inject-cls";
 import { DummyController } from "./dummy.controller";
 import { Router } from "express";
 

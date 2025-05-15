@@ -13,4 +13,4 @@ COPY . .
 EXPOSE 3001
 
 # start the backend server
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
