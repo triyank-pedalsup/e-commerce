@@ -38,6 +38,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "@types/morgan": "^1.9.9",
     "@types/winston": "^2.4.4",
+    "cross-env": "^7.0.3",
     "tsc-alias": "^1.8.16"
   }
 }
