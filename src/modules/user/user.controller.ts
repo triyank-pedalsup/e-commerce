@@ -50,34 +50,36 @@ export class UserController {
             const { email, password } = req.body;
 
             if (!email || !password) {
-                return res.send("Email and password required");
+            return res.status(400).json({ message: "Email and password required" });
             }
 
             const user = await this.userService.login(email);
 
             if (!user) {
-                return res.send("User not found");
+            return res.status(404).json({ message: "User not found" });
             }
 
             const isMatch = await bcrypt.compare(password, user.password);
 
             if (!isMatch) {
-                return res.send("Password is invalid");
+            return res.status(401).json({ message: "Password is invalid" });
             }
 
             const payload = {
-                id: user.id,
-                email: user.email,
-                role: user.role,
-            }
+            id: user.id,
+            email: user.email,
+            role: user.role,
+            };
 
             const token = await this.jwtMiddleWare.generateToken(payload);
 
             res.status(200).json({ message: "Logged in successfully", token });
         } catch (error) {
-            res.status(500).json({ message: "Logged in fail", error: error });
+            console.error("Login error:", error);
+            res.status(500).json({ message: "Login failed due to server error" });
         }
     };
+
 
     public adminLogin = async(req: Request, res: Response) => {
         try {

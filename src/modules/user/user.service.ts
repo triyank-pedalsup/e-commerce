@@ -4,19 +4,18 @@ import { RegisterUserDto } from './dto/register.dto.js';
 const prisma = new PrismaClient();
 
 export class UserService {
-    public async register(data: RegisterUserDto){
+    public async register(data: any){
         const user = await prisma.user.create({
             data
         })
         return user;
     }
 
-    public async login({email}: Pick<LoginUserDto, 'email'>){
+    public async login(email: string){
+        console.log("Email received in login service:", email);
         const user = await prisma.user.findUnique({
-            where:{
-                email
-            }
-        })
+            where: { email }
+        });
         return user;
     }
 
