@@ -24,10 +24,11 @@ export async function destructPagerMiddleware(req: Request, res: Response):Promi
         }
 
         res.json({
+            data: products,
             totalProducts,
             page,
-            pages: totalPages,
-            products,
+            limit,
+            pages: totalPages
         })
 
     } catch (error) {

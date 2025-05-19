@@ -21,7 +21,7 @@ export class ProductRoutes {
 
     inRoutes(): void {
         this.router.post("/createProduct",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.create)
-        this.router.get('/getProduct',this.productController.get);
+        this.router.get('/getProduct',destructPagerMiddleware,this.productController.get);
         this.router.delete("/deleteProduct/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.delete)
         this.router.put("/updateProduct/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.update)
     }

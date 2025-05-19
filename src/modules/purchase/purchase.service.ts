@@ -10,7 +10,6 @@ export class PurchaseService {
         return user;
     }
 
-
     async findProduct(id: number){
         const findproduct = await prisma.product.findUnique({
             where:{
