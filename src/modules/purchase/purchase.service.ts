@@ -20,7 +20,7 @@ export class PurchaseService {
         return findproduct;
     }
 
-    async purchaseHistory(id: number){
+    async purchaseHistory(id: any){
         const purchaseHistory = await prisma.purchase.findMany({
             where: {
                 id
