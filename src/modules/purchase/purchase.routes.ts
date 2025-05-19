@@ -19,6 +19,6 @@ export class PurchaseRoutes {
 
     inRoutes():void{
         this.router.post("/purchaseProduct",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('user'),this.purchaseController.purchaseProduct)
-        this.router.get("/history/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('user'),this.purchaseController.purchaseHistory)
+        this.router.get("/history",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('user'),this.purchaseController.purchaseHistory)
     }
 }

@@ -65,7 +65,7 @@ export class PurchaseController {
     //purchaseHistory
     public purchaseHistory = async(req: Request,res: Response): Promise<any> => {
         try {
-            const id = parseInt(req.params.id);
+            const id = (req as any).me;
             const purchaseHistory = await this.purchaseService.purchaseHistory(id);
     
             if (!purchaseHistory || purchaseHistory.length === 0) {
