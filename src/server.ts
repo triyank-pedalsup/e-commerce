@@ -8,6 +8,8 @@ require('dotenv').config();
 const app = express();
 const routes = new Routes();
 
+app.set('trust proxy', 1);
+
 app.use(morgan('dev'));
 app.use(express.json());
 
