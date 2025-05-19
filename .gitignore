@@ -8,3 +8,9 @@ node_modules/
 purchase-error.log
 user.log
 *.log
+
+# comment out the pgdata
+pgdata
+
+#remove the backup file from the github
+backup_file.backup
