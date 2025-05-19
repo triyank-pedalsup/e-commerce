@@ -21,10 +21,8 @@ export class ProductRoutes {
 
     inRoutes(): void {
         this.router.post("/createProduct",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.create)
-        this.router.get('/getProduct', (req, res) => {
-            res.json({ message: "Product route works!" });
-        },destructPagerMiddleware,this.productController.getProduct);
-        this.router.delete("/deleteProduct/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.deleteProduct)
-        this.router.put("/updateProduct/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.updateProduct)
+        this.router.get('/getProduct',destructPagerMiddleware,this.productController.get);
+        this.router.delete("/deleteProduct/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.delete)
+        this.router.put("/updateProduct/:id",this.jwtMiddleWare.verifyToken,this.jwtMiddleWare.checkRole('admin'),this.productController.update)
     }
 }

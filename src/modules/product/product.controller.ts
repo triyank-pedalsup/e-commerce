@@ -29,7 +29,7 @@ export class ProductController {
     }
 
     //getProduct
-    public getProduct = async(req: Request, res: Response) => {
+    public get = async(req: Request, res: Response) => {
         try {
             const data = await this.productService.get();
             res.json({ message: "fetch all product successfully", data })
@@ -39,7 +39,7 @@ export class ProductController {
     }
 
     //deleteProduct - only admin
-    public deleteProduct = async(req: Request, res: Response) => {
+    public delete = async(req: Request, res: Response) => {
         try {
             const id = parseInt(req.params.id);
             const data = await this.productService.delete(id);
@@ -51,7 +51,7 @@ export class ProductController {
     }
 
     //updateProduct - only admin
-    public updateProduct = async(req:Request, res: Response) => {
+    public update = async(req:Request, res: Response) => {
         try {
             const id = parseInt(req.params.id);
             const {
