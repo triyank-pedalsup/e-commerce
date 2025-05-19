@@ -4648,6 +4648,7 @@ export namespace Prisma {
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    name_price_description?: ProductNamePriceDescriptionCompoundUniqueInput
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
@@ -4655,7 +4656,7 @@ export namespace Prisma {
     price?: FloatFilter<"Product"> | number
     description?: StringFilter<"Product"> | string
     purchases?: PurchaseListRelationFilter
-  }, "id">
+  }, "id" | "name_price_description">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
@@ -5025,6 +5026,12 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type ProductNamePriceDescriptionCompoundUniqueInput = {
+    name: string
+    price: number
+    description: string
   }
 
   export type ProductCountOrderByAggregateInput = {

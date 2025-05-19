@@ -5,6 +5,18 @@ const prisma = new PrismaClient();
 
 export class ProductService {
     async create(data: CreateProdcutDto){
+        const existingProduct = await prisma.product.findFirst({
+            where:{
+                name: data.name,
+                price: data.price,
+                description: data.description
+            }
+        })
+
+        if (existingProduct) {
+            throw new Error("Product already exists.");
+        }
+
         const product = await prisma.product.create({
             data
         })

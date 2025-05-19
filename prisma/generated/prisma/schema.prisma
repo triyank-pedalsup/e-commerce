@@ -26,12 +26,13 @@ model User {
 }
 
 model Product {
-  id          Int    @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   name        String
   price       Float
   description String
+  purchases   Purchase[] @relation("Product")
 
-  purchases Purchase[] @relation("Product")
+  @@unique([name, price, description])
 }
 
 model Purchase {
