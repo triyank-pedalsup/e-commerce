@@ -183,12 +183,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://ecommerce_user:yVrIjyF4gN9jE70S3eDSfIynVReVL1eh@dpg-d0lgahjuibrs73a9tuig-a.singapore-postgres.render.com:5432/task_j22f"
       }
     }
   },
