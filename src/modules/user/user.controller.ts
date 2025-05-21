@@ -73,14 +73,6 @@ export class UserController {
 
             const { token } = await this.jwtMiddleWare.generateToken(payload);
 
-            // in future use this refresh token functionallity
-            // res.cookie("refreshtoken", refreshtoken, {
-            //     httpOnly: true,
-            //     secure: true,
-            //     sameSite: "lax",
-            //     maxAge: 90*24*60*60*1000,
-            // })
-
             res.status(200).json({ message: "Logged in successfully", token });
         } catch (error) {
             console.error("Login error:", error);

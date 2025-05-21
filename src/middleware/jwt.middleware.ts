@@ -6,11 +6,6 @@ export class JwtMiddleWare {
         const token = jwt.sign(payload,process.env.JWT_SECRET as string,{
             expiresIn:  '90d'
         });
-
-        //refresh token - further use
-        // const refreshtoken = jwt.sign(payload,process.env.JWT_REFRESH_SECRET as string,{
-        //     expiresIn: '90d'
-        // })
         return {token};
     }
     
