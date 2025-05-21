@@ -2,6 +2,7 @@ import express from 'express';
 import { Routes } from './globalRoutes';
 import morgan from 'morgan';
 import { RateLimitHelper } from './helpers/rate-limiter.helper';
+import cookieParser from 'cookie-parser';
 
 require('dotenv').config(); 
 
@@ -12,6 +13,7 @@ app.set('trust proxy', 1);
 
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cookieParser());
 
 app.use(new RateLimitHelper().limiter)
 app.use("/", routes.config());

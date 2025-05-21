@@ -4,11 +4,16 @@ import { Request, Response, NextFunction } from 'express';
 export class JwtMiddleWare {
     public generateToken = async(payload: any): Promise<any> => {
         const token = jwt.sign(payload,process.env.JWT_SECRET as string,{
-            expiresIn:  '30d'
+            expiresIn:  '90d'
         });
-        return token;
-    }
 
+        //refresh token - further use
+        const refreshtoken = jwt.sign(payload,process.env.JWT_REFRESH_SECRET as string,{
+            expiresIn: '90d'
+        })
+        return {token, refreshtoken};
+    }
+    
     public verifyToken = async(req: Request, res: Response, next: NextFunction ): Promise<any> => {
         const authHeader = req.headers.authorization;
 
@@ -19,11 +24,11 @@ export class JwtMiddleWare {
         const token = authHeader.split(" ")[1];
 
         try {
-            const decoded = jwt.verify(token,process.env.JWT_SECRET as string);
+            const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
             (req as any).user = decoded;
             next();
-        } catch (error) {
-            return res.json({ message: 'Forbidden: Invalid token' });
+        } catch (error: any) {
+            return res.send("something went's wrong")
         }
     }
 
