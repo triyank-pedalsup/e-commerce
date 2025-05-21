@@ -71,16 +71,17 @@ export class UserController {
             role: user.role,
             };
 
-            const { token, refreshtoken} = await this.jwtMiddleWare.generateToken(payload);
+            const { token } = await this.jwtMiddleWare.generateToken(payload);
 
-            res.cookie("refreshtoken", refreshtoken, {
-                httpOnly: true,
-                secure: true,
-                sameSite: "lax",
-                maxAge: 90*24*60*60*1000,
-            })
+            // in future use this refresh token functionallity
+            // res.cookie("refreshtoken", refreshtoken, {
+            //     httpOnly: true,
+            //     secure: true,
+            //     sameSite: "lax",
+            //     maxAge: 90*24*60*60*1000,
+            // })
 
-            res.status(200).json({ message: "Logged in successfully", token, refreshtoken });
+            res.status(200).json({ message: "Logged in successfully", token });
         } catch (error) {
             console.error("Login error:", error);
             res.status(500).json({ message: "Login failed due to server error" });

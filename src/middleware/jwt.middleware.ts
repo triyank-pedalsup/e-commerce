@@ -8,10 +8,10 @@ export class JwtMiddleWare {
         });
 
         //refresh token - further use
-        const refreshtoken = jwt.sign(payload,process.env.JWT_REFRESH_SECRET as string,{
-            expiresIn: '90d'
-        })
-        return {token, refreshtoken};
+        // const refreshtoken = jwt.sign(payload,process.env.JWT_REFRESH_SECRET as string,{
+        //     expiresIn: '90d'
+        // })
+        return {token};
     }
     
     public verifyToken = async(req: Request, res: Response, next: NextFunction ): Promise<any> => {
